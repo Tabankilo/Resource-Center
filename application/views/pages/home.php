@@ -19,7 +19,7 @@
             
         </div>
         <div class="modal-body">
-            <form action="<?php echo site_url('home/addClient'); ?>" method="post">
+            <form action="<?php echo site_url('pages/register'); ?>" method="post">
                 <div class="col-lg-6">
                     <h5>Agency Information</h5>
                     <div class="form-group">
@@ -45,7 +45,7 @@
                         <input type="text" class="form-control" name="client_name" placeholder="Client Name" />
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="email_address" placeholder="Email Address" />
+                        <input type="text" class="form-control" name="email" placeholder="Email Address" />
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" name="phone" placeholder="Phone" />
@@ -71,7 +71,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group button-primary">
-                        <button class="form-control" name="addclient">Submit</button>
+                        <button class="form-control">Submit</button>
                     </div>
                 </div>
 

@@ -23,13 +23,6 @@
     <!-- Custom Fonts -->
     <link href="assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 </head>
 
 <body>
@@ -52,7 +45,7 @@
             <ul class="nav navbar-right top-nav">                
                 
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome back,  Name in here <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Welcome back,  <?php echo $this->session->userdata('first_name '); echo $this->session->userdata('last_name ');?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="settings.php"><i class="fa fa-fw fa-gear"></i> Settings</a>
@@ -66,7 +59,7 @@
             </ul>
         </nav>
 
-    <?php if ( isset($show_sidebar) && $show_sidebar ) : ?>
+    <!-- <?php //if ( isset($show_sidebar) && $show_sidebar ) : ?> -->
         <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav side-nav">                    
@@ -105,7 +98,7 @@
             </ul>
         </div>
         <!-- /.navbar-collapse -->
-    <?php endif; ?>
+    <?php //endif; ?>
     
     <?php $this->load->view('notifications'); ?>
     <?php $this->load->view($main_content); ?>

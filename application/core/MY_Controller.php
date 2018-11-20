@@ -2,14 +2,15 @@
 
 class MY_Controller extends CI_Controller 
 {
-    protected $data = [];
+	protected $data = [];
 	public function __construct() 
-    {
-        parent::__construct();
-       
-        //load the Login Model
-        $this->load->model('user');
+	{
+		parent::__construct();
 
-        $this->data['show_sidebar'] = true;
+//load the Login Model
+		$this->load->model('user');
+// $this->load->model('data');
+
+		$this->data['show_sidebar'] = true;
 	}
 }

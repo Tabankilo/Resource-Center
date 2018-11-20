@@ -5,19 +5,25 @@ class User extends MY_Model
 	public function login($username, $password) 
     {
         //query the table 'users' and get the result count
-        $user = $this->db->where('username', $username)->get('users');
+        $user = $this->select("CONCAT_WS(' ', first_name, last_name) AS names, id, role", false)
+                           ->get('users', ['username' => $username]);
         if( $user->num_rows() )
         {
             // test for password
-            if ( $user->get()->password !== $password )
+            if ( $user->row()->password !== $password )
             {
                 // pass message back user password does not match
                 return [ 'message' => 'username or password does not match'];
             }
-            return true;
+            return $user;
         }
         // user not found
         return [ 'message' => 'user not found in the database'];
+    }
+
+    public function get($username)
+    {
+        return $this->db->where('username', $username)->get('users')->row()->first_name;
     }
 
     public function create($data)

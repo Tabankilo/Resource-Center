@@ -1,4 +1,5 @@
 <?php if( $errors = $this->session->flashdata('errors') ) : ?>
+	<br>
 <div class="alert alert-danger fade in">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
     <strong>Error!</strong> <?php echo $errors; ?>
@@ -6,6 +7,7 @@
 <?php endif; ?>
 
 <?php if( $success = $this->session->flashdata('success')) : ?>
+<br>
 <div class="alert alert-success fade in">
     <a href="#" class="close" data-dismiss="alert">&times;</a>
     <strong>Success!</strong> <?php echo $success; ?>

@@ -3,39 +3,44 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends MY_Controller 
 {
-	public function __construct() 
+    public function __construct() 
     {
         parent::__construct();
-        if( ! empty( $this->session->userdata('logged_in') ) )
+        if( $this->session->userdata('logged_in') == true )
         {
             redirect(site_url('pages/home'));
         }
     }
 
-	public function index()
-	{
+    public function index()
+    {
+        $this->load->view('login/login', $this->data);
+    }
 
-		$this->load->view('login/login', $this->data);
-	}
-
-	public function auth() 
+    public function auth() 
     { 
         // if the result is query result is 1 then valid user
         $result = $this->user->login($this->input->post('username'), $this->input->post('password'));
-        if ( $result === true ) 
+        if ( array($result) ) 
         {
-            // set the session 'loggin_in' as true
-            $this->session->set_userdata('logged_in', true);
-            $this->session->set_flashdata('success', 'some goood login message');
-             
-             // redirect home
-            redirect(site_url('pages/home'));
+            // error - redirect to login page with flashdata invalid msg
+            $this->session->set_flashdata('error', $result['message']);
+            redirect(site_url('login/login'), 'refresh');
+            exit();
         } 
         else 
         {            
-            // error - redirect to login page with flashdata invalid msg
-            $this->session->set_flashdata('error', $result['message']);
-            redirect(base_url('login'));           
+            redirect(base_url('login'));   
+            // set the session 'loggin_in' as true
+            $this->session->set_userdata([
+                'logged_in' => true,
+                'auth' => $result->row()
+            ]);
+            $this->session->set_flashdata('success', 'You are welcome '. $result->row()->names );
+
+            // redirect home
+            redirect(site_url('pages/home'),  'refresh');
+            exit();
         }
     }
 

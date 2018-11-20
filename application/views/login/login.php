@@ -27,8 +27,9 @@
                 </button>
                 <a class="navbar-brand" href="user_login.php"><img src="assets/images/logo.png" style="width: 100px; height: 70px; margin-top: -15px;" /></a>
             </div>
+            <?php $this->load->view('notifications'); ?>
             <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right" role="form" action="<?php echo site_url('login/auth'); ?>" method="POST">
+                <form class="navbar-form navbar-right"  action="<?php echo site_url('login/auth'); ?>" method="POST">
                     <div class="form-group">
                         <input type="text" placeholder="ID No." class="form-control" name="username" autocomplete="off" required="true">
                     </div>
